@@ -21,7 +21,7 @@
 		"allowJs": true,
 		"paths": {
 			"@src/*": ["./*"],
-			"@styles/*": ["./styles/*"],
+			"@styles": ["./styles"],
 			"@stores/*": ["./stores/*"]
 		}
 	},
