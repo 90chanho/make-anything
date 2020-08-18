@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Gnb from "@src/components/gnb/Gnb";
-import { headerStyle } from "@styles";
+import "./Header.scss";
 
 export default function Header() {
   return (
-    <header className={headerStyle.header}>
+    <header className="header">
       <h1>
         <Link href="/">
           <a>

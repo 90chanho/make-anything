@@ -1,3 +1,7 @@
+import AuthStore from "./auth";
+
 export default class RootStore {
-	constructor() {}
+  constructor() {
+    this.AuthStore = new AuthStore();
+  }
 }

@@ -1,14 +1,15 @@
 const withSass = require("@zeit/next-sass");
-const withCss = require("@zeit/next-css");
-const withTM = require("next-transpile-modules");
+const withLess = require("@zeit/next-less");
 
-module.exports = withCss(
-  withSass(
-    withTM({
-      cssModules: true,
-      cssLoaderOptions: {
-        localIdentName: "[local]___[hash:base64:5]"
-      }
-    })
-  )
+// fix: prevents error when .less files are required by node
+if (typeof require !== "undefined") {
+  require.extensions[".less"] = file => {};
+}
+
+module.exports = withLess(
+  withSass({
+    lessLoaderOptions: {
+      javascriptEnabled: true
+    }
+  })
 );

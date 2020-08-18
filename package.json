@@ -3,15 +3,20 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev -p 8080",
 		"build": "next build",
 		"start": "next start"
 	},
 	"dependencies": {
+		"@ant-design/icons": "^4.2.2",
 		"@babel/plugin-proposal-class-properties": "^7.10.4",
 		"@babel/plugin-proposal-decorators": "^7.10.5",
+		"@zeit/next-less": "^1.0.1",
+		"antd": "^4.5.4",
+		"axios": "^0.19.2",
 		"classnames": "~2.2.6",
 		"css-reset-and-normalize-sass": "^0.1.2",
+		"less": "^3.12.2",
 		"mobx": "~4.7.0",
 		"mobx-react": "~5.3.6",
 		"mobx-react-devtools": "^6.1.1",

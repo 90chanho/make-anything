@@ -1,24 +1,31 @@
 import * as React from "react";
 import Head from "next/head";
+import { Provider } from "mobx-react";
 import Header from "@src/components/header/Header";
 import Footer from "@src/components/footer/Footer";
-import { layoutStyle } from "@src/styles";
+import "./DefaultLayout.scss";
+import RootStore from "@src/stores";
+
+const store = new RootStore();
 
 interface LayoutProps {
-  pageName: string;
+  pageName?: string;
   children: React.ReactNode;
 }
 
-export default function DefaultLayout(props: LayoutProps) {
-  const { pageName, children } = props;
+function DefaultLayout({ pageName, children }: LayoutProps) {
   return (
-    <div className={layoutStyle.app}>
-      <Head>
-        <title>{pageName}</title>
-      </Head>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        <Head>
+          <title>{pageName || "Make Anything"}</title>
+        </Head>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </div>
+    </Provider>
   );
 }
+
+export default DefaultLayout;
