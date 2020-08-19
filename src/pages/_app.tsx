@@ -7,17 +7,15 @@ import "../styles/global.scss";
 import "../styles/antd.less";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(false);
 
   useEffect(() => {
     const start = () => {
-      console.log("start");
-      setLoading(true);
+      setPageLoading(true);
     };
 
     const end = () => {
-      console.log("end");
-      setLoading(false);
+      setPageLoading(false);
     };
 
     Router.events.on("routeChangeStart", start);
@@ -30,5 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, []);
 
-  return <>{loading ? <Loading /> : <Component {...pageProps} />}</>;
+  return (
+    <Component {...pageProps} pageLoading={pageLoading} Loading={<Loading />} />
+  );
 }

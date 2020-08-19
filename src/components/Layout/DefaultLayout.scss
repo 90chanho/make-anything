@@ -9,10 +9,12 @@
 
   main {
     flex: 1;
+    max-width: 1024px;
+    margin: 0 auto;
   }
 
   footer {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     text-align: center;
     background-color: #595959;
     color: #fff;

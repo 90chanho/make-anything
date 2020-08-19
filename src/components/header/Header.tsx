@@ -8,9 +8,7 @@ export default function Header() {
     <header className="header">
       <h1>
         <Link href="/">
-          <a>
-            <img src="/images/logo.svg" alt="Clovirtual Fashion" />
-          </a>
+          <a>Make Anything</a>
         </Link>
       </h1>
       <Gnb />

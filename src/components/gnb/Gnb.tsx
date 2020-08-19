@@ -22,18 +22,18 @@ function Gnb(props: { authStore?: authStoreProps }) {
     <nav className="gnb">
       <ul>
         <li>
-          <Link href="/trello">
-            <a className={isActive("trello")}>트렐로</a>
+          <Link href="/comment">
+            <a className={isActive("comment")}>컨텐츠</a>
           </Link>
         </li>
         <li>
-          <Link href="/content2">
-            <a className={isActive("content2")}>컨텐츠2</a>
+          <Link href="/noAuth">
+            <a className={isActive("noAuth")}>No Auth Page</a>
           </Link>
         </li>
         <li>
-          <Link href="/content3">
-            <a className={isActive("content3")}>컨텐츠3</a>
+          <Link href="/needAuth">
+            <a className={isActive("needAuth")}>Auth Page</a>
           </Link>
         </li>
         <li>

@@ -1,6 +1,5 @@
 import { action, observable } from "mobx";
 import axios from "axios";
-import { useRouter } from "next/router";
 
 export default class AuthStore {
   @observable
