@@ -1,0 +1,38 @@
+{
+  "articles": [
+    {
+      "aid": "0f01-2abb-d593-2201",
+      "authorUid": "0e0e-2aa6-d523-3521",
+      "createDate": "",
+      "content": "",
+      "likes": [],
+      "comments": []
+    }
+  ],
+  "save": [
+    {
+      "aid": "0f01-883c-d593-fb6b",
+      "authorUid": "fb6b-60bf-ffc2-da85",
+      "createDate": "",
+      "content": "",
+      "likes": [],
+      "comments": []
+    },
+    {
+      "aid": "d523-883c-d593-da85",
+      "authorUid": "04f5-883c-5dbc-b2e8",
+      "createDate": "",
+      "content": "",
+      "likes": [],
+      "comments": []
+    },
+    {
+      "aid": "2abb-0f01-2201-d593",
+      "authorUid": "0e0e-2aa6-d523-3521",
+      "createDate": "",
+      "content": "",
+      "likes": [],
+      "comments": []
+    }
+  ]
+}

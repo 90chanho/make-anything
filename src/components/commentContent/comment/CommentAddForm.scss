@@ -1,0 +1,13 @@
+.commentAddForm {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  input {
+    flex: 1;
+    background-color: #f1f2f5;
+    border-radius: 20px;
+    border: none;
+    padding: 8px 12px;
+    box-sizing: border-box;
+  }
+}

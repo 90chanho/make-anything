@@ -21,7 +21,7 @@ function DefaultLayout({ pageName, children }: LayoutProps) {
           <title>{pageName || "Make Anything"}</title>
         </Head>
         <Header />
-        <main>{children}</main>
+        {children}
         <Footer />
       </div>
     </Provider>

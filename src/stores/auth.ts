@@ -1,9 +1,13 @@
 import { action, observable } from "mobx";
-import axios from "axios";
+import authData from "@src/assets/auth.json";
+import { AuthType } from "@src/types/auth";
+
+const initValue = {
+  auth: authData.auth
+};
 
 export default class AuthStore {
-  @observable
-  isAuth = false;
+  @observable userData = initValue.auth;
 
   @action
   replaceToSigninPage(
@@ -16,18 +20,17 @@ export default class AuthStore {
   }
 
   @action.bound
-  setToken(token?: string) {
-    if (token) {
-      localStorage.setItem("maAuth", token);
-      this.isAuth = true;
-      console.log("로그인 완료");
+  signin(data: AuthType) {
+    const isPass = this.userValidationCheck(data.uid);
+    if (isPass) {
+      this.userData = data;
     } else {
-      localStorage.removeItem("maAuth");
-      this.isAuth = false;
-      console.log("로그아웃 완료");
+      this.userData = data;
     }
-    axios.defaults.headers.common["Authorization"] = token
-      ? `Bearer ${token}`
-      : null;
+    return isPass;
+  }
+
+  userValidationCheck(uid: string) {
+    return authData.some(uid);
   }
 }

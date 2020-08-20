@@ -5,7 +5,6 @@ import Landing from "@src/components/landing/Landing";
 
 function Home(props) {
   const { pageLoading, Loading } = props;
-  console.log("props", props);
   return (
     <DefaultLayout pageName="home">
       <Head>

@@ -1,5 +1,4 @@
-export interface authStoreProps {
-  isAuth: boolean;
-  replaceToSigninPage: (router: {}, asPath: string) => void;
-  setToken: (token?: string) => void;
+export interface AuthType {
+  uid: string;
+  name: string;
 }

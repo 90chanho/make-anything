@@ -23,7 +23,7 @@ function Gnb(props: { authStore?: authStoreProps }) {
       <ul>
         <li>
           <Link href="/comment">
-            <a className={isActive("comment")}>컨텐츠</a>
+            <a className={isActive("commentContent")}>컨텐츠</a>
           </Link>
         </li>
         <li>

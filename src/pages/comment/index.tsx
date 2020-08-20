@@ -1,42 +1,30 @@
-import React from "react";
+import * as React from "react";
+import { useMemo } from "react";
+import { Provider } from "mobx-react";
+import { observer } from "mobx-react-lite";
+import { CommentStore } from "@src/stores/comment.ts";
 import DefaultLayout from "@src/components/Layout/DefaultLayout";
-import Article from "@src/components/comment/article/Article";
-import { articleType } from "@src/types/comment";
+import ArticleWrapper from "@src/components/commentContent/article/Article";
+import "./index.scss";
 
 function Comment() {
-  const articles = [
-    {
-      id: 0,
-      author: "user1",
-      created: "Wed Aug 19 2020 18:29:45 GMT+0900"
-    },
-    {
-      id: 1,
-      author: "user1",
-      created: "Thu Aug 20 2020 18:29:45 GMT+0900"
-    },
-    {
-      id: 2,
-      author: "user1",
-      created: "Fri Aug 21 2020 18:29:45 GMT+0900"
-    },
-    {
-      id: 3,
-      author: "user1",
-      created: "Sat Aug 22 2020 18:29:45 GMT+0900"
-    }
-  ];
+  const commentStore = useMemo(() => new CommentStore(), []);
+  const { articles } = commentStore;
 
   return (
-    <DefaultLayout>
-      코멘트 기능
-      <ul>
-        {articles.map(item => {
-          return <Article key={item.id} data={item} />;
-        })}
-      </ul>
-    </DefaultLayout>
+    <Provider commentStore={commentStore}>
+      <DefaultLayout>
+        <main className="articlePage">
+          <h2>코멘트 기능</h2>
+          <ul>
+            {articles.map(item => {
+              return <ArticleWrapper key={item.aid} data={item} />;
+            })}
+          </ul>
+        </main>
+      </DefaultLayout>
+    </Provider>
   );
 }
 
-export default Comment;
+export default observer(Comment);

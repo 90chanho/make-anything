@@ -1,6 +1,9 @@
 .gnb ul {
   display: flex;
   box-shadow: 0 1px 5px gray;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
 
   li {
     flex: 1;

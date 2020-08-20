@@ -1,0 +1,22 @@
+.articleReaction {
+  border-top: 1px solid #cdd0d4;
+  border-bottom: 1px solid #cdd0d4;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  button {
+    width: 30%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    &:hover {
+      background-color: #eee;
+    }
+    i {
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  }
+}
