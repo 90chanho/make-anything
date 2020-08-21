@@ -31,6 +31,7 @@ export default class AuthStore {
   }
 
   userValidationCheck(uid: string) {
-    return authData.some(uid);
+    const isUser = (user: AuthType) => user.uid === uid;
+    return authData.users.some(isUser);
   }
 }

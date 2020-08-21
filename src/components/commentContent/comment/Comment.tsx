@@ -7,6 +7,7 @@ import { ArticleType, CommentType } from "@src/types/comment";
 import { AuthType } from "@src/types/auth";
 import Profile from "@src/components/commentContent/Profile";
 import CommentContent from "@src/components/commentContent/comment/CommentContent";
+import CommentAddForm from "@src/components/commentContent/comment/CommentAddForm";
 import "./Comment.scss";
 
 function Comment({
@@ -41,7 +42,7 @@ function Comment({
           showReCommentForm={showReCommentForm}
         />
       </div>
-      {/*<ul className="reCommentList">
+      <ul className="reCommentList">
         {commentData.comments.map(recomment => {
           return (
             <li key={recomment.ccid} className="reCommentItem">
@@ -54,17 +55,17 @@ function Comment({
             </li>
           );
         })}
-        {!this.state.hideReCommentForm && (
+        {!handleReCommentForm.hideReCommentForm && (
           <li>
             <CommentAddForm
               commentType="reComment"
               aid={articleData.aid}
               cid={commentData.cid}
-              focusReCommentForm={this.state.focusReCommentForm}
+              focusReCommentForm={handleReCommentForm.focusReCommentForm}
             />
           </li>
         )}
-      </ul>*/}
+      </ul>
     </li>
   );
 }

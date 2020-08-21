@@ -14,12 +14,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const start = () => {
-      console.log("start");
       setPageLoading(true);
     };
 
     const end = () => {
-      console.log("end");
       setPageLoading(false);
     };
 

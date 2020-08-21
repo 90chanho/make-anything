@@ -5,6 +5,10 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    p {
+      margin-bottom: 0;
+    }
   }
 
   a {
@@ -14,5 +18,36 @@
 
   * {
     box-sizing: border-box;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+
+  .App {
+    text-align: center;
+  }
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  button,
+  .clickable {
+    cursor: pointer;
+  }
+
+  *[hidden] {
+    display: none !important;
+  }
+
+  .floatLayer {
+    display: none;
+    z-index: 10;
+    &.is-show {
+      display: block;
+    }
   }
 }

@@ -3,12 +3,13 @@ import { useState, useRef } from "react";
 import { CommentType } from "@src/types/comment";
 import { AuthType } from "@src/types/auth";
 import Modal from "@src/components/common/Modal";
+import CommentReaction from "@src/components/commentContent/comment/CommentReaction";
 import "./CommentContent.scss";
 
 interface Props {
   commentData: CommentType;
   userData: AuthType;
-  showReCommentForm: () => void;
+  showReCommentForm?: () => void;
   commentType?: string;
 }
 
@@ -18,7 +19,7 @@ const CommentContent = ({
   showReCommentForm,
   commentType = "comment"
 }: Props) => {
-  const floatLayer = useRef<React.ReactNode | null>(null);
+  const floatLayer = useRef<HTMLDivElement | null>(null);
   const [isShowCommentDeleteModal, setIsShowCommentDeleteModal] = useState(
     false
   );
@@ -40,8 +41,8 @@ const CommentContent = ({
     setIsShowCommentDeleteModal(false);
   };
 
-  const onToggleFloatLayer = e => {
-    e.stopPropagation();
+  const onToggleFloatLayer = (e?: React.MouseEvent) => {
+    e!.stopPropagation();
     if (
       floatLayer.current &&
       floatLayer.current.classList.contains("is-show")
@@ -57,12 +58,12 @@ const CommentContent = ({
     }
   };
 
-  const handleKeydown = e => {
-    e.keyCode === 13 && onToggleFloatLayer(e);
+  const handleKeydown = (e: React.KeyboardEvent) => {
+    e.key === "Enter" && onToggleFloatLayer();
   };
 
   return (
-    <div className="commentContent">
+    <div className="commentContentWrapper">
       <div className="contentWrapper">
         <div className="commentBox">
           <p className="author">{userData.name}</p>
@@ -100,11 +101,11 @@ const CommentContent = ({
           </button>
         </Modal>
       )}
-      {/*<CommentReaction
+      <CommentReaction
         commentType={commentType}
         commentData={commentData}
         showReCommentForm={showReCommentForm}
-      />*/}
+      />
     </div>
   );
 };

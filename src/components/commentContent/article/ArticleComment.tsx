@@ -4,8 +4,6 @@ import { ArticleType, CommentType } from "@src/types/comment";
 import CommentAddForm from "@src/components/commentContent/comment/CommentAddForm";
 
 function ArticleComment({ articleData }: { articleData: ArticleType }) {
-  console.log("articleData =", articleData);
-
   return (
     <div>
       <CommentAddForm aid={articleData.aid} />

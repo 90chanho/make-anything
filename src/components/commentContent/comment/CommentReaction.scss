@@ -1,0 +1,20 @@
+.commentReaction {
+  margin-top: 3px;
+  .buttonLike,
+  .buttonReComment,
+  .createDate {
+    font-size: 12px;
+  }
+  .buttonLike,
+  .buttonReComment {
+    font-weight: bold;
+  }
+  .buttonLike {
+    &.liked {
+      color: #0e98f5;
+    }
+  }
+  .createDate {
+    padding: 0 6px;
+  }
+}
