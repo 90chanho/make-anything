@@ -3,7 +3,7 @@ import Comment from "@src/components/commentContent/comment/Comment";
 import { ArticleType, CommentType } from "@src/types/comment";
 import CommentAddForm from "@src/components/commentContent/comment/CommentAddForm";
 
-function ArticleComment({ articleData }: { articleData: ArticleType }) {
+function ArticleComment(articleData: ArticleType) {
   return (
     <div>
       <CommentAddForm aid={articleData.aid} />

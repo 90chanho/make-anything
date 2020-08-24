@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { FocusableElementType } from "@src/types/comment";
+import "./Modal.scss";
 
 interface Props {
   children: React.ReactNode;
@@ -11,10 +13,10 @@ interface Props {
 
 function Modal(props: Props) {
   const { onClose } = props;
-  const modal = useRef<React.ReactNode | null>(null);
-  const closeButton = useRef<React.ReactElement<HTMLDivElement> | null>(null);
+  const modal = useRef<FocusableElementType | null>(null);
+  const closeButton = useRef<HTMLButtonElement | null>(null);
 
-  const handleKeyTrap = e => {
+  const handleKeyTrap = (e: KeyboardEvent) => {
     if (!modal.current) {
       return;
     }
@@ -30,11 +32,11 @@ function Modal(props: Props) {
 
     if (e.keyCode === 9 && e.shiftKey && isFocusableFirstNode) {
       e.preventDefault();
-      focusableLastNode.focus();
+      (focusableLastNode as FocusableElementType).focus();
     }
     if (e.keyCode === 9 && !e.shiftKey && isFocusableLastNode) {
       e.preventDefault();
-      focusableFirstNode.focus();
+      (focusableFirstNode as FocusableElementType).focus();
     }
   };
 

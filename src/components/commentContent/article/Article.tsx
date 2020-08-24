@@ -2,6 +2,7 @@ import React from "react";
 import { ArticleType } from "@src/types/comment";
 import { inject } from "mobx-react";
 import { observer } from "mobx-react-lite";
+import CommentStore from "@stores/comment";
 import "./Article.scss";
 import ArticleHeader from "@src/components/commentContent/article/ArticleHeader";
 import ArticleContent from "@src/components/commentContent/article/ArticleContent";
@@ -9,16 +10,18 @@ import ArticlePopularity from "@src/components/commentContent/article/ArticlePop
 import ArticleReaction from "@src/components/commentContent/article/ArticleReaction";
 import ArticleComment from "@src/components/commentContent/article/ArticleComment";
 
-function ArticleWrapper({ data }: { data: ArticleType }) {
+function ArticleWrapper({ commentStore }: { commentStore: CommentStore }) {
+  const { articleList }: { articleList: ArticleType[] } = commentStore;
+  console.log("commentStore =", commentStore);
   return (
     <li className="article">
       <article>
         <ArticleHeader />
         <ArticleContent />
         <footer>
-          <ArticlePopularity articleData={data} />
+          <ArticlePopularity articleData={articleList} />
           <ArticleReaction />
-          <ArticleComment articleData={data} />
+          <ArticleComment articleData={articleList} />
         </footer>
       </article>
     </li>

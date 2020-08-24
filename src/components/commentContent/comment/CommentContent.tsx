@@ -1,12 +1,19 @@
 import React from "react";
 import { useState, useRef } from "react";
-import { CommentType } from "@src/types/comment";
+import { inject } from "mobx-react";
+import { observer } from "mobx-react-lite";
+import {
+  CommentType,
+  CommentDeleteActionPayloadType
+} from "@src/types/comment";
+import CommentStore from "@stores/comment";
 import { AuthType } from "@src/types/auth";
 import Modal from "@src/components/common/Modal";
 import CommentReaction from "@src/components/commentContent/comment/CommentReaction";
 import "./CommentContent.scss";
 
 interface Props {
+  commentStore?: CommentStore;
   commentData: CommentType;
   userData: AuthType;
   showReCommentForm?: () => void;
@@ -14,23 +21,26 @@ interface Props {
 }
 
 const CommentContent = ({
+  commentStore,
   commentData,
   userData,
   showReCommentForm,
   commentType = "comment"
 }: Props) => {
+  const { deleteComment, deleteReComment } = commentStore!;
   const floatLayer = useRef<HTMLDivElement | null>(null);
   const [isShowCommentDeleteModal, setIsShowCommentDeleteModal] = useState(
     false
   );
 
   const onDeleteComment = () => {
+    console.log("함수 동작");
     const { aid, cid } = commentData;
-    const payload = {
+    const payload: CommentDeleteActionPayloadType = {
       aid,
       cid
     };
-    // action
+    deleteComment(payload);
   };
 
   const onShowCommentDeleteModal = () => {
@@ -110,4 +120,4 @@ const CommentContent = ({
   );
 };
 
-export default CommentContent;
+export default inject("commentStore")(observer(CommentContent));

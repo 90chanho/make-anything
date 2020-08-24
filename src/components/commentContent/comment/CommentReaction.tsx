@@ -32,10 +32,8 @@ function CommentReaction(props: Props) {
     };
     const isAlreadyLiked = onCheckLikedCurrentUser();
     if (isAlreadyLiked) {
-      // action cancel like comment
       cancelLikeComment(payload);
     } else {
-      // action like comment
       likeComment(payload);
     }
   };
@@ -49,10 +47,8 @@ function CommentReaction(props: Props) {
     };
     const isAlreadyLiked = onCheckLikedCurrentUser();
     if (isAlreadyLiked) {
-      // action cancel like recomment
       cancelLikeReComment(payload);
     } else {
-      // action like recomment
       likeReComment(payload);
     }
   };

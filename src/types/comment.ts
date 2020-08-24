@@ -15,3 +15,23 @@ export interface CommentType extends ArticleType {
 export interface RootData {
   articles: ArticleType[];
 }
+
+export interface CommentLikeActionPayloadType {
+  aid: string;
+  cid: string;
+  ccid?: string;
+  authorUid: string;
+}
+
+export interface CommentDeleteActionPayloadType {
+  aid: string;
+  cid: string;
+  ccid?: string;
+}
+
+export type FocusableElementType =
+  | HTMLAnchorElement
+  | HTMLButtonElement
+  | HTMLInputElement
+  | HTMLTextAreaElement
+  | HTMLSelectElement;

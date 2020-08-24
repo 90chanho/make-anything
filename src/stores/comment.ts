@@ -1,8 +1,14 @@
 import { computed, observable, action } from "mobx";
 import dummyData from "@src/assets/dummy.json";
 import { RootData } from "@src/types/comment";
-import { CommentType } from "@src/types/comment";
-import { ArticleType } from "@src/types/comment";
+import {
+  CommentType,
+  ArticleType,
+  CommentLikeActionPayloadType,
+  CommentDeleteActionPayloadType
+} from "@src/types/comment";
+
+console.log("this.data =", dummyData.articles);
 
 export default class CommentStore {
   @observable data: RootData = dummyData;
@@ -35,19 +41,22 @@ export default class CommentStore {
   }
 
   @action.bound
-  deleteComment(payload: CommentType) {
+  deleteComment(payload: CommentDeleteActionPayloadType) {
+    console.log("payload :", payload);
     this.articleList = this.articleList.map(article => {
       if (article.aid !== payload.aid) return article;
       const targetCommentIndex = article.comments.findIndex(
         comment => comment.cid === payload.cid
       );
+      console.log("targetCommentIndex =", targetCommentIndex);
       article.comments.splice(targetCommentIndex, 1);
+      console.log("article =", article);
       return article;
     });
   }
 
   @action.bound
-  deleteReComment(payload: CommentType) {
+  deleteReComment(payload: CommentDeleteActionPayloadType) {
     this.articleList = this.articleList.map(article => {
       if (article.aid !== payload.aid) return article;
       const targetCommentIndex = article.comments.findIndex(
@@ -65,7 +74,7 @@ export default class CommentStore {
   }
 
   @action.bound
-  likeComment(payload: CommentType) {
+  likeComment(payload: CommentLikeActionPayloadType) {
     this.articleList = this.articleList.map(article => {
       if (article.aid !== payload.aid) return article;
       article.comments.forEach(
@@ -77,7 +86,7 @@ export default class CommentStore {
   }
 
   @action.bound
-  likeReComment(payload: CommentType) {
+  likeReComment(payload: CommentLikeActionPayloadType) {
     this.articleList = this.articleList.map(article => {
       if (article.aid !== payload.aid) return article;
       const targetComment = article.comments.filter(
@@ -93,7 +102,7 @@ export default class CommentStore {
   }
 
   @action.bound
-  cancelLikeComment(payload) {
+  cancelLikeComment(payload: CommentLikeActionPayloadType) {
     this.articleList = this.articleList.map(article => {
       if (article.aid !== payload.aid) return article;
       const targetComment = article.comments.filter(
@@ -108,7 +117,7 @@ export default class CommentStore {
   }
 
   @action.bound
-  cancelLikeReComment(payload) {
+  cancelLikeReComment(payload: CommentLikeActionPayloadType) {
     this.articleList = this.articleList.map(article => {
       if (article.aid !== payload.aid) return article;
       const targetComment = article.comments.filter(
