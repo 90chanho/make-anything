@@ -2,9 +2,8 @@ import React from "react";
 import { ArticleType } from "@src/types/comment";
 import "./ArticlePopularity.scss";
 
-const ArticlePopularity = (props: { articleData: ArticleType[] }) => {
+const ArticlePopularity = (props: { articleData: ArticleType }) => {
   const { articleData } = props;
-  console.log("props =", props);
   return (
     <div className="articlePopularity">
       <div>

@@ -61,11 +61,9 @@ const CommentAddForm = (props: Props) => {
   );
 
   useEffect(() => {
-    return () => {
-      if (focusReCommentForm && input.current) {
-        input.current.focus();
-      }
-    };
+    if (focusReCommentForm && input.current) {
+      input.current.focus();
+    }
   });
 
   return (

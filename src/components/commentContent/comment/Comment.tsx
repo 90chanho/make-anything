@@ -26,6 +26,7 @@ function Comment({
   });
 
   const showReCommentForm = () => {
+    console.log("showReCommentForm");
     setHandleReCommentForm({
       hideReCommentForm: false,
       focusReCommentForm: true

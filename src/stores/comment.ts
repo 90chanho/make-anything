@@ -8,23 +8,54 @@ import {
   CommentDeleteActionPayloadType
 } from "@src/types/comment";
 
-console.log("this.data =", dummyData.articles);
-
 export default class CommentStore {
   @observable data: RootData = dummyData;
-  @observable articleList: ArticleType[] = this.data.articles;
+  @observable articleList: ArticleType[] = dummyData.articles;
 
   @computed
   get articles() {
     return this.data.articles;
   }
 
+  setItemArticlesLocalStorage = (data: ArticleType[]) => {
+    window.localStorage.setItem("anthony-comment", JSON.stringify(data));
+  };
+
+  @action.bound
+  setArticleList(data: ArticleType[]) {
+    this.articleList = data;
+  }
+
+  @action.bound
+  sortCommentList(comments: CommentType[]) {
+    comments.sort((a, b) => {
+      if (a.pin && b.pin) {
+        if (a.createDate > b.createDate) {
+          return -1;
+        }
+        return 1;
+      } else if (a.pin && !b.pin) {
+        return -1;
+      } else if (!a.pin && b.pin) {
+        return 1;
+      }
+    });
+  }
+
+  @action.bound
+  pinComment() {}
+
+  @action.bound
+  deletePinComment() {}
+
   @action.bound
   addComment(payload: CommentType) {
+    console.log("payload =", payload);
     this.articleList = this.articleList.map(article => {
       if (article.aid === payload.aid) article.comments.push(payload);
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 
   @action.bound
@@ -38,21 +69,20 @@ export default class CommentStore {
       }
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 
   @action.bound
   deleteComment(payload: CommentDeleteActionPayloadType) {
-    console.log("payload :", payload);
     this.articleList = this.articleList.map(article => {
       if (article.aid !== payload.aid) return article;
       const targetCommentIndex = article.comments.findIndex(
         comment => comment.cid === payload.cid
       );
-      console.log("targetCommentIndex =", targetCommentIndex);
       article.comments.splice(targetCommentIndex, 1);
-      console.log("article =", article);
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 
   @action.bound
@@ -71,6 +101,7 @@ export default class CommentStore {
       );
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 
   @action.bound
@@ -83,6 +114,7 @@ export default class CommentStore {
       );
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 
   @action.bound
@@ -96,9 +128,9 @@ export default class CommentStore {
         recomment => recomment.ccid === payload.ccid
       );
       targetReComment[0].likes.push(payload.authorUid);
-      console.log(JSON.stringify(article));
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 
   @action.bound
@@ -114,6 +146,7 @@ export default class CommentStore {
       targetComment[0].likes.splice(targetIndex, 1);
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 
   @action.bound
@@ -132,5 +165,6 @@ export default class CommentStore {
       targetReComment[0].likes.splice(targetIndex, 1);
       return article;
     });
+    this.setItemArticlesLocalStorage(this.articleList);
   }
 }

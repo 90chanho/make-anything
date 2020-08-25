@@ -4,13 +4,12 @@ import DefaultLayout from "@src/components/Layout/DefaultLayout";
 import Landing from "@src/components/landing/Landing";
 
 function Home(props) {
-  const { pageLoading, Loading } = props;
   return (
     <DefaultLayout pageName="home">
       <Head>
         <title>인덱스 타이틀</title>
       </Head>
-      {pageLoading ? Loading : <Landing />}
+      <Landing />
     </DefaultLayout>
   );
 }

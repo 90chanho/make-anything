@@ -4,13 +4,12 @@ import { Provider } from "mobx-react";
 import { observer } from "mobx-react-lite";
 import CommentStore from "@src/stores/comment.ts";
 import DefaultLayout from "@src/components/Layout/DefaultLayout";
-import ArticleWrapper from "@src/components/commentContent/article/Article";
+import Articles from "@src/components/commentContent/article/Articles";
 import { onHideAllFloatLayer } from "@src/modules/utils/lib";
 import "./index.scss";
 
 function Comment() {
   const commentStore = useMemo(() => new CommentStore(), []);
-  const { articleList } = commentStore;
 
   const handleFloatLayer = (e: MouseEvent) => {
     if (
@@ -23,6 +22,13 @@ function Comment() {
 
   useEffect(() => {
     document.body.addEventListener("click", handleFloatLayer);
+    const storedArticles = window.localStorage.getItem("anthony-comment");
+
+    if (storedArticles) {
+      const localStorageData = JSON.parse(storedArticles);
+      commentStore.setArticleList(localStorageData);
+    }
+
     return () => {
       document.body.removeEventListener("click", handleFloatLayer);
     };
@@ -33,11 +39,7 @@ function Comment() {
       <DefaultLayout>
         <main className="articlePage">
           <h2>코멘트 기능</h2>
-          <ul>
-            {articleList.map(item => {
-              return <ArticleWrapper key={item.aid} data={item} />;
-            })}
-          </ul>
+          <Articles />
         </main>
       </DefaultLayout>
     </Provider>

@@ -34,7 +34,6 @@ const CommentContent = ({
   );
 
   const onDeleteComment = () => {
-    console.log("함수 동작");
     const { aid, cid } = commentData;
     const payload: CommentDeleteActionPayloadType = {
       aid,
@@ -75,6 +74,7 @@ const CommentContent = ({
   return (
     <div className="commentContentWrapper">
       <div className="contentWrapper">
+        {commentData.pin && <i className="fas fa-thumbtack" />}
         <div className="commentBox">
           <p className="author">{userData.name}</p>
           <p className="content">{commentData.content}</p>
@@ -95,6 +95,7 @@ const CommentContent = ({
         )}
         <div className="handlebuttonWrapper floatLayer" ref={floatLayer}>
           <button onClick={onShowCommentDeleteModal}>삭제하기</button>
+          <button onClick={onShowCommentDeleteModal}>고정하기</button>
         </div>
       </div>
       {isShowCommentDeleteModal && (

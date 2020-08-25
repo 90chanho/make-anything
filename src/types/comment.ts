@@ -10,6 +10,7 @@ export interface ArticleType {
 export interface CommentType extends ArticleType {
   cid: string;
   ccid?: string;
+  pin?: boolean;
 }
 
 export interface RootData {
